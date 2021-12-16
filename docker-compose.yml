@@ -1,0 +1,21 @@
+version: "3.7"
+
+networks:
+  default:
+    external: true
+    name: aline
+
+services:
+  user-service:
+    build: .
+    environment:
+      - APP_PORT
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_HOST
+      - DB_PORT
+      - DB_NAME
+      - AppJWTSecretKey
+      - AppEncryptKey
+    ports:
+      - 8070:8070
