@@ -1,5 +1,5 @@
 FROM maven:3-openjdk-11-slim
+WORKDIR /app
 COPY . .
-# RUN mvn clean install
 ENTRYPOINT [ "mvn" ]
-CMD [ "spring-boot:run -pl underwriter-microservice" ]
+CMD [ "spring-boot:run -pl user-microservice" ]
