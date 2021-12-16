@@ -8,6 +8,7 @@ networks:
 services:
   user-service:
     build: .
+    image: aline/user-microservice
     environment:
       - APP_PORT
       - DB_USERNAME
