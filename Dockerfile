@@ -1,5 +1,5 @@
-FROM maven:3-openjdk-11-slim
+FROM maven:3-openjdk-17-slim
 WORKDIR /app
 COPY . .
-ENTRYPOINT [ "mvn" ]
-CMD [ "spring-boot:run -pl user-microservice" ]
+RUN mvn clean install -Dmaven.test.skip=true
+ENTRYPOINT "mvn" "spring-boot:run" "-pl" "user-microservice"
