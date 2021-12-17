@@ -16,7 +16,7 @@ services:
       - DB_HOST
       - DB_PORT
       - DB_NAME
-      - AppJWTSecretKey
-      - AppEncryptKey
+      - ENCRYPT_SECRET_KEY
+      - JWT_SECRET_KEY
     ports:
       - 8070:8070
