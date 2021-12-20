@@ -13,4 +13,4 @@ services:
     env_file:
       - .env
     ports:
-      - 8070:8070
+      - 8070:${APP_PORT}
