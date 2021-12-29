@@ -102,20 +102,20 @@ public class UserConfirmationService {
      */
     public void sendMemberUserConfirmationEmail(MemberUser user) {
 
-        final String username = user.getUsername();
-        final String subject = String.format("We Need Your Confirmation, %s", username);
-        final String template = "user/confirm-registration";
-        final String email = user.getMember().getApplicant().getEmail();
-        final String memberDashboardUrl = appConfig.getMemberDashboard();
-        final String landingPortalUrl = appConfig.getLandingPortal();
-        final String token = createRegistrationToken(user).getToken().toString();
-        final String confirmationLink = String.format("%s/confirmation?token=%s", memberDashboardUrl, token);
+        // final String username = user.getUsername();
+        // final String subject = String.format("We Need Your Confirmation, %s", username);
+        // final String template = "user/confirm-registration";
+        // final String email = user.getMember().getApplicant().getEmail();
+        // final String memberDashboardUrl = appConfig.getMemberDashboard();
+        // final String landingPortalUrl = appConfig.getLandingPortal();
+        // final String token = createRegistrationToken(user).getToken().toString();
+        // final String confirmationLink = String.format("%s/confirmation?token=%s", memberDashboardUrl, token);
 
-        final Map<String, String> variables = new HashMap<>();
-        variables.put("landingPortalUrl", landingPortalUrl);
-        variables.put("confirmationLink", confirmationLink);
+        // final Map<String, String> variables = new HashMap<>();
+        // variables.put("landingPortalUrl", landingPortalUrl);
+        // variables.put("confirmationLink", confirmationLink);
 
-        emailService.sendHtmlEmail(subject, template, email, variables);
+        // emailService.sendHtmlEmail(subject, template, email, variables);
     }
 
 }
