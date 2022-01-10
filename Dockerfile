@@ -1,6 +1,10 @@
-FROM maven:3-openjdk-17-slim
-ENV SERVICE_NAME=user-microservice
-ENV VERSION=0.1.0
+ARG SERVICE_NAME=user-microservice
+ARG VERSION=0.1.0
+ARG JAR_NAME=$SERVICE_NAME-$VERSION.jar
+ARG JAR_PATH=$SERVICE_NAME/target/$JAR_NAME
+
+FROM maven:3-openjdk-17-slim as build
+ARG SERVICE_NAME
 WORKDIR /app
 
 # Install dependencies
@@ -13,4 +17,7 @@ RUN mvn dependency:go-offline -Dmaven.test.skip=true
 COPY . .
 RUN mvn package -Dmaven.test.skip=true
 
-CMD "java" "-jar" "$SERVICE_NAME/target/$SERVICE_NAME-$VERSION.jar"
+FROM openjdk:8-alpine
+ARG JAR_PATH
+COPY --from=build /app/$JAR_PATH app.jar
+CMD "java" "-jar" "app.jar"
