@@ -1,11 +1,13 @@
 ARG SERVICE_NAME=user-microservice
 ARG VERSION=0.1.0
+ARG BUILD_DIR=/app
 ARG JAR_NAME=$SERVICE_NAME-$VERSION.jar
-ARG JAR_PATH=$SERVICE_NAME/target/$JAR_NAME
+ARG JAR_FULL_PATH=$BUILD_DIR/$SERVICE_NAME/target/$JAR_NAME
 
 FROM maven:3-openjdk-17-slim as build
 ARG SERVICE_NAME
-WORKDIR /app
+ARG BUILD_DIR
+WORKDIR $BUILD_DIR
 
 # Install dependencies
 COPY pom.xml .
@@ -18,6 +20,6 @@ COPY . .
 RUN mvn package -Dmaven.test.skip=true
 
 FROM openjdk:8-alpine
-ARG JAR_PATH
-COPY --from=build /app/$JAR_PATH app.jar
+ARG JAR_FULL_PATH
+COPY --from=build $JAR_FULL_PATH app.jar
 CMD "java" "-jar" "app.jar"
