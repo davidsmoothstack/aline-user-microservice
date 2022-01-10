@@ -8,7 +8,7 @@ networks:
 services:
   user-service:
     build: .
-    image: aline/user-microservice
+    image: captainsalt/user-microservice
     restart: always
     env_file:
       - .env
