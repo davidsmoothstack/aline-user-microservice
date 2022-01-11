@@ -19,7 +19,7 @@ RUN mvn dependency:go-offline -Dmaven.test.skip=true
 COPY . .
 RUN mvn package -Dmaven.test.skip=true
 
-FROM openjdk:8-alpine
+FROM openjdk:8-jre-alpine3.9
 ARG JAR_FULL_PATH
 COPY --from=build $JAR_FULL_PATH app.jar
 CMD "java" "-jar" "app.jar"
